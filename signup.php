@@ -69,60 +69,104 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13h2c0.55,0,1-0.45,1-1s-0.45-1-1-1H2 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13h2c0.55,0,1-0.45,1-1s-0.45-1-1-1h-2c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 S11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0 s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/>
       </svg>
     </button>
-    <div class="signup-container">
-        <!-- <h2>Create Account</h2> -->
-
-        <?php
-        if($showAlert){
-            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Success!</strong> Your account has been created.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h3>Create Account</h3>
+            </div>
+            <div class="card-body">
+                <?php
+                if($showAlert){
+                    echo '<div class="alert alert-success" role="alert">
+                            <strong>Success!</strong> Your account has been created.
+                          </div>';
+                }
+                if($showError){
+                    echo '<div class="alert alert-danger" role="alert">
+                            <strong>Error!</strong> '. $showError.'
+                          </div>';
+                }
+                ?>
+                <form action="signup.php" method="post">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Choose a username" maxlength="20" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Choose a password" maxlength="23" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpassword">Confirm Password</label>
+                        <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Repeat your password" required>
+                    </div>
+                    <button type="submit" class="btn">
+                        <span>Create Account</span>
+                        <span class="loading" style="display: none;"></span>
                     </button>
-                  </div>';
-        }
-
-        if($showError){
-            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Error:</strong> '.$showError.'
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>';
-        }
-        ?>
-<div class="signup-container">
-    <div class="signup-header">
-      <h2>Join HealthBot</h2>
-      <p>Your AI-powered Symptom Tracker</p>
+                </form>
+                <div class="signup-link">
+                    Already have an account? <a href="login.php">Login</a>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- Alerts -->
-    <!-- <div class="alert alert-success">Account created successfully!</div> -->
-    <!-- <div class="alert alert-error">Passwords do not match</div> -->
-
-    <form action="signup.php" method="post">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" maxlength="20" required />
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" maxlength="23" required />
-      </div>
-      <div class="form-group">
-        <label for="cpassword">Confirm Password</label>
-        <input type="password" id="cpassword" name="cpassword" required />
-      </div>
-      <button type="submit" class="btn">Sign Up</button>
-    </form>
-    <div class="login-link">
-      Already have an account? <a href="login.php">Login</a>
-    </div>
-  </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="theme.js"></script>
+    <script>
+      // Initialize theme toggle
+      initTheme();
+
+      // Form submission and loading animation
+      document.querySelector('form').addEventListener('submit', function(e) {
+        const btn = this.querySelector('.btn');
+        const btnText = btn.querySelector('span:not(.loading)');
+        const loading = btn.querySelector('.loading');
+        
+        btnText.style.opacity = '0';
+        loading.style.display = 'inline-block';
+        
+        // Enable inputs and button after 100ms if form is invalid
+        setTimeout(() => {
+          if (!this.checkValidity()) {
+            btnText.style.opacity = '1';
+            loading.style.display = 'none';
+          }
+        }, 100);
+      });
+
+      // Input focus effects
+      document.querySelectorAll('.form-control').forEach(input => {
+        const field = input.parentElement;
+        
+        input.addEventListener('focus', () => {
+          field.style.transform = 'translateY(-4px)';
+          input.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+        });
+        
+        input.addEventListener('blur', () => {
+          field.style.transform = 'none';
+          input.style.boxShadow = 'none';
+        });
+      });
+
+      // Auto-hide alerts after 5 seconds
+      document.querySelectorAll('.alert').forEach(alert => {
+        setTimeout(() => {
+          alert.style.opacity = '0';
+          alert.style.transform = 'translateY(-10px)';
+          setTimeout(() => {
+            if (alert.parentElement) {
+              alert.parentElement.removeChild(alert);
+            }
+          }, 300);
+        }, 5000);
+      });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="theme.js"></script>
