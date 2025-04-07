@@ -17,7 +17,8 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     <title>Medical Symptom Analyzer</title>
     <!-- Add Marked.js for Markdown parsing -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
-    <style>
+    <link rel="stylesheet" href="welcome.css">
+    <!-- <style>
         :root {
             --primary-color: #4285F4;
             --secondary-color: #34A853;
@@ -270,7 +271,8 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
                 padding: 15px;
             }
         }
-    </style>
+    </style> -->
+
 </head>
 <body>
     <?php require 'partials/_nav.php' ?>
